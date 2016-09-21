@@ -58,7 +58,7 @@ func listContainers() []string {
 
 	for index, c := range containers {
 
-		containersId[index] = c.ID
+		containersId[index] = c.ID[0:12]
 
 	}
 
@@ -82,11 +82,11 @@ func checkLockFiles( containers []string ) {
 
 		if stringInSlice( string(data), containers ) {
 
-			fmt.Printf("matching container %s for file %s [KEEPING]\n", string(data), lockFilePath )
+			fmt.Printf("Matching container %s for file %s [KEEPING]\n", strings.TrimSpace( string(data) ), lockFilePath )
 
 		} else {
 
-			fmt.Printf("abadoned file %s for container %s [REMOVING]\n", lockFilePath, string(data) )
+			fmt.Printf("Abadoned file %s for container %s [REMOVING]\n", lockFilePath, strings.TrimSpace( string(data) ) )
 
 			var err = os.Remove( lockFilePath )
 			checkError( err )

@@ -1,13 +1,7 @@
-FROM golang:1.7-alpine
+FROM alpine:3.4
 
-WORKDIR /go/src/github.com/elmariofredo/tc-agent-name-unlocker
+COPY ./container-teamcity-toolbox /usr/local/bin/container-teamcity-toolbox
 
-RUN apk update && \
-    apk add --no-cache git zsh
+COPY ./tc-agent-names-cleanup.sh /etc/periodic/15min/tc-agent-names-cleanup
 
-RUN go get github.com/spf13/cobra/cobra
-RUN go get github.com/docker/docker/client
-RUN go get github.com/docker/docker/api/types
-RUN go get golang.org/x/net/context 
-
-ENTRYPOINT [ "zsh" ]
+ENTRYPOINT [ "crond", "-f" ]

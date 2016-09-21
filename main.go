@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/elmariofredo/tc-agent-name-unlocker/cmd"
+import "github.com/elmariofredo/container-teamcity-toolbox/cmd"
 
 func main() {
 	cmd.Execute()
