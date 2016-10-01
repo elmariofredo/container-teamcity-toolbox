@@ -1,0 +1,3 @@
+FROM alpine:3.4
+
+ENTRYPOINT [ "rm", "-rf", "/opt/docker-shared/agentlock/1", "/opt/docker-shared/agentlock/2", "/opt/docker-shared/agentlock/3", "/opt/docker-shared/agentlock/4" ]
